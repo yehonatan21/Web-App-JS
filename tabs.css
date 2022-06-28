@@ -1,0 +1,14 @@
+#cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteBtn{
+    display: none;
+}
+
+.card:hover .deleteBtn{
+    display: inline-block;
+}
