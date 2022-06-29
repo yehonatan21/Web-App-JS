@@ -5,27 +5,41 @@ form.addEventListener('submit', function (event) {
     let fname = document.getElementById('fullName').value;
     let job = document.getElementById('job').value;
     let email = document.getElementById('email').value;
-    let cardContainer = document.getElementById('cardContainer')
 
+    fname = isNameValid(fname); //TODO: Change func Name
+    isemailValid(email);
+    createCard(fname, job, email);
+})
+
+function isNameValid(fname) {
+    if (fname.includes("פקיד")) {
+        fname = fname.replace("פקיד", ' ');
+    }
     if (fname.length < 2) {
         alert('Your name is less than 2 characters.');
     }
+    return fname;
+};
+
+function isemailValid(email) {
     if (!email.includes("@")) {
         alert('The email is not valid.');
     }
+}
 
+function createCard(fname, job, email) {
     if (fname.length >= 2 && email.includes("@")) {
         const cardDiv = document.createElement("div");
-        cardDiv.classList.add('card')
-        cardDiv.setAttribute("id", fname)//TODO: How to create dimanic number 
+        cardDiv.classList.add('card');
+        cardDiv.setAttribute("id", fname);
         const cardName = document.createElement("p");
-        cardName.classList.add('fullName')
+        cardName.classList.add('fullName');
         cardName.innerHTML = fname;
         const cardJob = document.createElement("p");
-        cardJob.classList.add('job')
+        cardJob.classList.add('job');
         cardJob.innerHTML = job;
         const cardEmail = document.createElement("p");
-        cardEmail.classList.add('email')
+        cardEmail.classList.add('email');
         cardEmail.innerHTML = email;
 
         const btn = createDelBtn();
@@ -36,11 +50,11 @@ form.addEventListener('submit', function (event) {
         cardDiv.appendChild(btn);
         cardContainer.appendChild(cardDiv);
     }
-})
+}
 
 function createDelBtn() {
     var button = document.createElement("button");
-    button.classList.add('deleteBtn')
+    button.classList.add('deleteBtn');
     button.innerHTML = "Delete";
 
     var body = document.getElementsByTagName("body")[0];
