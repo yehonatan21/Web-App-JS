@@ -5,11 +5,28 @@ form.addEventListener('submit', function (event) {
     let fname = document.getElementById('fullName').value;
     let job = document.getElementById('job').value;
     let email = document.getElementById('email').value;
+    // let cardContainer = document.getElementById('cardContainer');
+
+    localStorage.setItem("fullName", fname);
+    localStorage.setItem("job", job);
+    localStorage.setItem("email", email);
+    console.log(localStorage)
 
     fname = isNameValid(fname); //TODO: Change func Name
     isemailValid(email);
     createCard(fname, job, email);
-})
+    // readLocalStorage()
+}
+)
+
+// function readLocalStorage() {
+//     for (let i = 0; i < localStorage.length; i++) {
+//         const key = localStorage.key(i);
+//         const value = localStorage.getItem(key);
+
+//         cardContainer.innerHTML += `${value}<br/>`;
+//     }
+// }
 
 function isNameValid(fname) {
     if (fname.includes("פקיד")) {
