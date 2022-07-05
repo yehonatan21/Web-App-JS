@@ -168,7 +168,6 @@ function averageGrades(grades) {
         averageGrades = averageGrades + grades[j];
     }
     averageGrades = averageGrades / (grades.length + 1);
-    console.log(averageGrades);
     return averageGrades;
 }
 
@@ -181,6 +180,8 @@ form.addEventListener('click', function (event) {
 
     switch (selector) {
         case 'Age':
+            let filterValue = getFilterValue();
+
             filterValue = parseInt(filterValue);
             if (isFilterValueNaN(filterValue)) {
                 alert('Please insert a number');
@@ -194,7 +195,6 @@ form.addEventListener('click', function (event) {
             break;
 
         case 'Name': //TODO: MAKE case sensetive
-            console.log('Name');
             for (let i = 0; i < usersArray.length; i++) {
                 if (filterValue != usersArray[i].name) {
                     document.getElementById(usersArray[i].name).style.display = "none";
@@ -205,7 +205,6 @@ form.addEventListener('click', function (event) {
         case 'Admin':
             filterValue = filterValue.toLowerCase()
             if (filterValue == "true") {
-                console.log("2")
                 for (let i = 0; i < usersArray.length; i++) {
                     if (usersArray[i].admin == false) {
                         document.getElementById(usersArray[i].name).style.display = "none";
@@ -213,7 +212,6 @@ form.addEventListener('click', function (event) {
                 }
             }
             else if (filterValue == "false") {
-                console.log("3")
                 for (let i = 0; i < usersArray.length; i++) {
                     if (usersArray[i].admin == true) {
                         document.getElementById(usersArray[i].name).style.display = "none";
@@ -232,7 +230,6 @@ form.addEventListener('click', function (event) {
                 for (let i = 0; i < usersArray.length; i++) {
                     let avgGraed = averageGrades(usersArray[i].grades)
                     if (avgGraed < filterValue) {
-                        console.log("the cond is true");
                         document.getElementById(usersArray[i].name).style.display = "none";
                     }
                 }
@@ -240,15 +237,11 @@ form.addEventListener('click', function (event) {
             break;
 
         case 'Address':
-            let filterValue = getFilterValue();
-
             var myArray = filterValue.split(".");
-            // console.log(myArray);
             myArray[0] = myArray[0].toLowerCase()
 
 
             if (myArray[0] == 'city') {
-                console.log('city');
                 for (let i = 0; i < usersArray.length; i++) {
                     if (myArray[1] != usersArray[i].address.city) {
                         document.getElementById(usersArray[i].name).style.display = "none";
@@ -258,7 +251,6 @@ form.addEventListener('click', function (event) {
 
             else if (myArray[0] == 'housenumber') {
                 myArray[1] = parseInt(myArray[1]);
-                console.log(myArray[1]);
 
                 if (typeof myArray[1] == 'number') {
                     if (!isNaN(myArray[1])) {
@@ -288,20 +280,66 @@ form.addEventListener('click', function (event) {
 var form = document.getElementById('all-grades-greater-than');
 form.addEventListener('click', function (event) {
     event.preventDefault();
-    console.log('All Grades Greater Than');
     let filterValue = getFilterValue();
-    let getFilterValueNaN = isFilterValueNaN(filterValue);
+    let FilterValueNaN = isFilterValueNaN(filterValue);
+
+    if (FilterValueNaN) {
+        alert('Numbers Only');
+    } else {
+        for (let i = 0; i < usersArray.length; i++) {
+            if ((Math.min(...usersArray[i].grades)) < filterValue) {
+                document.getElementById(usersArray[i].name).style.display = "none";
+            }
+        }
+    }
 }
 )
+
 var form = document.getElementById('some-grades-greater-than');
 form.addEventListener('click', function (event) {
     event.preventDefault();
-    console.log('Some Grades Greater Than');
+    let filterValue = getFilterValue();
+    let FilterValueNaN = isFilterValueNaN(filterValue);
+
+    if (FilterValueNaN) {
+        alert('Numbers Only');
+    } else {
+        for (let i = 0; i < usersArray.length; i++) {
+            for (let j = 0; j < usersArray[i].grades[j]; j++) {
+                if (usersArray[i].grades[j] > filterValue) {
+                    break;
+                } else if (j + 1 == usersArray[i].grades.length) {
+                    document.getElementById(usersArray[i].name).style.display = "none";
+
+                }
+            }
+        }
+    }
 }
 )
 var form = document.getElementById('array-filter-and-manipulation');
 form.addEventListener('click', function (event) {
     event.preventDefault();
-    console.log('Array Filter And Manipulation');
-}
-)
+    filterValue = getFilterValue();
+    let FilterValueNaN = isFilterValueNaN(filterValue);
+
+    if (FilterValueNaN) {
+        alert('Numbers Only');
+    } else {
+
+        for (let i = 0; i < usersArray.length; i++) {
+            let avgGraed = averageGrades(usersArray[i].grades)
+            if (avgGraed > filterValue) {
+                document.getElementById(usersArray[i].name).style.display = "none";
+            } else if (filterValue > usersArray[i].address.houseNumber) {
+                document.getElementById(usersArray[i].name).style.display = "none";
+            } else {
+                let age = document.getElementById(usersArray[i].name).getElementsByClassName("age")[0];
+                filterValue = parseInt(filterValue);
+                usersArray[i].age = parseInt(usersArray[i].age);
+                age.textContent = usersArray[i].age + filterValue;
+                
+            }
+        }
+    }
+})

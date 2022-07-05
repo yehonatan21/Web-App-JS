@@ -8,3 +8,7 @@
 #filter{
     display: flex;
 }
+
+.card{
+margin-left: 25px;
+}
