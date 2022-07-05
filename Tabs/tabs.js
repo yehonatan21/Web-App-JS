@@ -5,32 +5,21 @@ form.addEventListener('submit', function (event) {
     let fname = document.getElementById('fullName').value;
     let job = document.getElementById('job').value;
     let email = document.getElementById('email').value;
-    // let cardContainer = document.getElementById('cardContainer');
 
     localStorage.setItem("fullName", fname);
     localStorage.setItem("job", job);
     localStorage.setItem("email", email);
-    console.log(localStorage)
 
     fname = isNameValid(fname); //TODO: Change func Name
     isemailValid(email);
-    createCard(fname, job, email);
-    // readLocalStorage()
+    createCard();
+    // cleanForm();
 }
 )
 
-// function readLocalStorage() {
-//     for (let i = 0; i < localStorage.length; i++) {
-//         const key = localStorage.key(i);
-//         const value = localStorage.getItem(key);
-
-//         cardContainer.innerHTML += `${value}<br/>`;
-//     }
-// }
-
 function isNameValid(fname) {
     if (fname.includes("פקיד")) {
-        fname = fname.replace("פקיד", ' ');
+        fname = fname.replace("פקיד", '');
     }
     if (fname.length < 2) {
         alert('Your name is less than 2 characters.');
@@ -44,20 +33,21 @@ function isemailValid(email) {
     }
 }
 
-function createCard(fname, job, email) {
-    if (fname.length >= 2 && email.includes("@")) {
+function createCard() {
+    if (localStorage.getItem("fullName").length >= 2 && localStorage.getItem("email").includes("@")) {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add('card');
-        cardDiv.setAttribute("id", fname);
+        cardDiv.setAttribute("id", localStorage.getItem("fullName"));
         const cardName = document.createElement("p");
         cardName.classList.add('fullName');
-        cardName.innerHTML = fname;
+        cardName.innerHTML = localStorage.getItem("fullName");
         const cardJob = document.createElement("p");
         cardJob.classList.add('job');
-        cardJob.innerHTML = job;
+        cardJob.innerHTML = localStorage.getItem("job");
         const cardEmail = document.createElement("p");
         cardEmail.classList.add('email');
-        cardEmail.innerHTML = email;
+        cardEmail.innerHTML = localStorage.getItem("email");
+
 
         const btn = createDelBtn();
 
@@ -67,6 +57,12 @@ function createCard(fname, job, email) {
         cardDiv.appendChild(btn);
         cardContainer.appendChild(cardDiv);
     }
+}
+
+function cleanForm() {
+    document.getElementById('fullName').value = '';
+    document.getElementById('job').value = '';
+    document.getElementById('email').value = '';
 }
 
 function createDelBtn() {
