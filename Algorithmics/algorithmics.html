@@ -5,10 +5,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algorithmics</title>
+    <script src="algorithmics.js" async></script>
+    <link rel="stylesheet" href="algorithmics.css">
+
 </head>
 
 <body>
- 
+    <div>
+        <form id="palindrome">
+            <label for="palindrome-input">Filter:</label>
+            <input type="text" name="action" id="palindrome-input">
+            <input type="submit" id="find">
+        </form>
+    </div>
+
+    <div>
+        <form id="letters">
+            <label for="letters-input">Enter Letters:</label>
+            <input type="text" name="letters-input" id="letters-input">
+            <input type="number" min="0" max="25" name="number-input" id="number-input">
+            <input type="submit" id="Encrypt" name="Encrypt" value="Encrypt">
+            <input type="submit" id="Decrypt" name="Decrypt" value="Decrypt">
+        </form>
+    </div>
+    <div id="cardContainer">
+
+    </div>
+
 </body>
 
 </html>
