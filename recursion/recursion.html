@@ -5,10 +5,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recursion</title>
+    <script src="recursion.js" async></script>
+    <script src="sierpinski-triangle.js" async></script>
 </head>
 
 <body>
-    
+    <div>
+        <form id="fib">
+            <label for="number-input">Insert Number:</label>
+            <input type="number" min="0" name="number-input" id="number-input" required>
+            <input type="submit">
+        </form>
+    </div>
+    <div id="cardContainer"></div>
+    <form id="sierpinski-triangle">
+        <input type="range" min="100" max="600" value="100" class="slider" id="size"
+            oninput="this.nextElementSibling.value = this.value">
+        <output>100</output>
+        <input type="range" min="0" max="6" value="1" class="slider" id="amount"
+            oninput="this.nextElementSibling.value = this.value">
+        <output>1</output>
+        <input type="submit">
+    </form>
+    <canvas id="canvas"></canvas>
 </body>
 
 </html>
