@@ -7,12 +7,12 @@
     <title>Actions</title>
     <link rel="stylesheet" href="actions.css">
     <script src="actions.js" async></script>
-    <script src="submit.js" async></script>
+    <script src="cards.js" async></script>
 </head>
 
 <body>
     <div id="filter">
-        <form id="select-filter" method="get">
+        <form id="select-filter">
             <select name="fileds" id="fileds">
                 <option>Age</option>
                 <option>Name</option>
@@ -21,7 +21,7 @@
                 <option>Address</option>
             </select>
             <label for="filter-value">Filter:</label>
-            <input type="text" name="action" id="filter-value" value="1">
+            <input type="text" name="action" id="filter-value" required>
             <input type="submit" id="find" value="Find">
             <input type="submit" id="all-grades-greater-than" value="All Grades Greater Than">
             <input type="submit" id="some-grades-greater-than" value="Some Grades Greater Than">
