@@ -1,18 +1,14 @@
-
-//TODO: create list of names and save it to localStorage 
-
 let form = document.getElementById('create-tab-form');
 form.addEventListener('submit', function (event) {
     event.preventDefault()
 
-    let names = [];
     let fname = document.getElementById('fullName').value;
     let job = document.getElementById('job').value;
     let email = document.getElementById('email').value;
 
     let NameValid = isNameValid(fname);
     if (NameValid) {
-        fname = NameValid
+        fname = NameValid;
     }
     let NameLengthValid = isNameLengthValid(fname);
     let emailValid = isemailValid(email);
@@ -21,10 +17,18 @@ form.addEventListener('submit', function (event) {
         localStorage.setItem(fname + '_' + "fullName", fname);
         localStorage.setItem(fname + '_' + "job", job);
         localStorage.setItem(fname + '_' + "email", email);
-        names.push(localStorage.getItem('names'));
-        names.push(fname);
+        let s = localStorage.getItem('names');
+        
+        let names = [];
+        if (s == null) {
+            names.push(fname);
+        } else {
+            storedNames = localStorage.getItem('names');
+            storedNames = storedNames.split(',')
+            storedNames.push(fname);
+            names = storedNames;
+        }
         localStorage.setItem('names', names)
-        console.log(names);
         createCard(fname);
     }
     cleanForm();
@@ -75,19 +79,30 @@ function cleanForm() {
     document.getElementById('email').value = '';
 }
 
+function arrayRemove(arr, value) {
+    return arr.filter(function (ele) {
+        return ele != value;
+    });
+}
+
 function createDelBtn() {
-    let button = document.createElement("button");
-    button.classList.add('deleteBtn');
-    button.innerHTML = "Delete";
+    let delButton = document.createElement("button");
+    delButton.classList.add('deleteBtn');
+    delButton.innerHTML = "Delete Card";
 
     let body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
+    body.appendChild(delButton);
 
-    button.addEventListener("click", function (event) {
+    delButton.addEventListener("click", function (event) {
+        storedNames = localStorage.getItem('names');
+        storedNames = storedNames.split(',');
+        storedNames = arrayRemove(storedNames, event.target.parentElement.id);
+        localStorage.setItem('names', storedNames)
+
         const elem = document.getElementById(event.target.parentElement.id);
         elem.remove();
     })
-    return button;
+    return delButton;
 };
 
 function appendToDoc(cardName, cardJob, cardEmail, deleteBtn, cardDiv) {
@@ -113,14 +128,13 @@ function cardContant(fname) {
     cardEmail.classList.add('email');
     cardEmail.innerHTML = localStorage.getItem(fname + '_' + "email");
 
-    const deleteBtn = createDelBtn();
+    const deleteBtn = createDelBtn(fname);
     appendToDoc(cardName, cardJob, cardEmail, deleteBtn, cardDiv);
 }
 
 function readFromLocalStorage() {
     let storedNames = localStorage.getItem("names");
     storedNames = storedNames.split(',')
-    console.log(storedNames);
     for (i = 0; i < storedNames.length; i++) {
         cardContant(storedNames[i])
     }
