@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <script type="text/javascript" src="clock.js" async></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <ul class="page-nav">
+            <ul id="page-nav">
                 <li><a href="/mainPage/mainPage.html">Home</a></li>
                 <li><a href="/Tabs/tabs.html">Tabs</a></li>
                 <li><a href="/Actions/actions.html">Actions</a> </li>
@@ -19,8 +20,11 @@
                 <li><a href="/Recursion/recursion.html">Recursion</a></li>
             </ul>
         </nav>
-        <h1> Time & Date: <span id="time"></span></h1>
     </header>
+    <div id="date-and-time">
+        <h1> Time & Date:</h1>
+        <span id="time"></span>
+    </div>
 </body>
 
 </html>
