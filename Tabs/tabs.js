@@ -6,24 +6,23 @@ form.addEventListener('submit', function (event) {
     let job = document.getElementById('job').value;
     let email = document.getElementById('email').value;
 
-    let NameValid = isNameValid(fname);
-    if (NameValid) {
-        fname = NameValid;
-    }
     let NameLengthValid = isNameLengthValid(fname);
+    let jobValid = isJobValid(job);
+    if (jobValid) {
+        job = jobValid;
+    }
     let emailValid = isemailValid(email);
 
-    if (NameValid && NameLengthValid && emailValid) {
+    if (jobValid && NameLengthValid && emailValid) {
         localStorage.setItem(fname + '_' + "fullName", fname);
         localStorage.setItem(fname + '_' + "job", job);
         localStorage.setItem(fname + '_' + "email", email);
-        let s = localStorage.getItem('names');
+        storedNames = localStorage.getItem('names');
         
         let names = [];
-        if (s == null) {
+        if (storedNames == null) {
             names.push(fname);
         } else {
-            storedNames = localStorage.getItem('names');
             storedNames = storedNames.split(',')
             storedNames.push(fname);
             names = storedNames;
@@ -44,17 +43,17 @@ function isNameLengthValid(fname) {
     }
 }
 
-function isNameValid(fname) {
-    if (fname.includes("פקיד")) {
-        fname = fname.replace("פקיד", '');
-        if (fname.length < 2) {
+function isJobValid(job) {
+    if (job.includes("פקיד")) {
+        job = job.replace("פקיד", '');
+        if (job.length < 2) {
             alert('The value פקיד removed and now its less then 2 characters. Please choose new name.');
             return false;
         } else {
-            return fname;
+            return job;
         }
     } else {
-        return fname;
+        return job;
     }
 };
 
