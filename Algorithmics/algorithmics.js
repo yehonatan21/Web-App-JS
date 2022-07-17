@@ -1,3 +1,5 @@
+`use strict`
+
 let palindromeForm = document.getElementById('palindrome');
 palindromeForm.addEventListener('submit', function (event) {
     event.preventDefault();

@@ -1,3 +1,5 @@
+`use strict`
+
 const usersArray = [
     {
         age: 16,

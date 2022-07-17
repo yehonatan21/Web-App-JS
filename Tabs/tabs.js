@@ -1,3 +1,5 @@
+`use strict`
+
 let form = document.getElementById('create-tab-form');
 form.addEventListener('submit', function (event) {
     event.preventDefault()
@@ -7,18 +9,18 @@ form.addEventListener('submit', function (event) {
     let email = document.getElementById('email').value;
 
     let NameLengthValid = isNameLengthValid(fname);
-    let jobValid = isJobValid(job);
-    if (jobValid) {
-        job = jobValid;
+    job = isJobValid(job);
+    if (job == undefined) {
+        job = '';
     }
     let emailValid = isemailValid(email);
 
-    if (jobValid && NameLengthValid && emailValid) {
+    if (NameLengthValid && emailValid) {
         localStorage.setItem(fname + '_' + "fullName", fname);
         localStorage.setItem(fname + '_' + "job", job);
         localStorage.setItem(fname + '_' + "email", email);
         storedNames = localStorage.getItem('names');
-        
+
         let names = [];
         if (storedNames == null) {
             names.push(fname);
@@ -46,12 +48,6 @@ function isNameLengthValid(fname) {
 function isJobValid(job) {
     if (job.includes("פקיד")) {
         job = job.replace("פקיד", '');
-        if (job.length < 2) {
-            alert('The value פקיד removed and now its less then 2 characters. Please choose new name.');
-            return false;
-        } else {
-            return job;
-        }
     } else {
         return job;
     }
@@ -87,7 +83,7 @@ function arrayRemove(arr, value) {
 function createDelBtn() {
     let delButton = document.createElement("button");
     delButton.classList.add('deleteBtn');
-    delButton.innerHTML = "Delete Card";
+    delButton.innerHTML = "מחק כרטיס";
 
     let body = document.getElementsByTagName("body")[0];
     body.appendChild(delButton);
@@ -100,15 +96,23 @@ function createDelBtn() {
 
         const elem = document.getElementById(event.target.parentElement.id);
         elem.remove();
+
+        localStorage.removeItem(event.target.parentElement.id + '_' + "fullName")
+        localStorage.removeItem(event.target.parentElement.id + '_' + "job")
+        localStorage.removeItem(event.target.parentElement.id + '_' + "email")
     })
     return delButton;
 };
 
 function appendToDoc(cardName, cardJob, cardEmail, deleteBtn, cardDiv) {
+    const circleDiv = document.createElement("div");
+    circleDiv.classList.add('circle');
+
     cardDiv.appendChild(cardName);
     cardDiv.appendChild(cardJob);
     cardDiv.appendChild(cardEmail);
     cardDiv.appendChild(deleteBtn);
+    cardDiv.appendChild(circleDiv);
     cardContainer.appendChild(cardDiv);
 }
 
@@ -119,13 +123,13 @@ function cardContant(fname) {
 
     const cardName = document.createElement("p");
     cardName.classList.add('fullName');
-    cardName.innerHTML = localStorage.getItem(fname + '_' + "fullName");
+    cardName.innerHTML = `שם: ${localStorage.getItem(fname + '_' + "fullName")}`;
     const cardJob = document.createElement("p");
     cardJob.classList.add('job');
-    cardJob.innerHTML = localStorage.getItem(fname + '_' + "job");
+    cardJob.innerHTML = `עבודה: ${localStorage.getItem(fname + '_' + "job")}`;
     const cardEmail = document.createElement("p");
     cardEmail.classList.add('email');
-    cardEmail.innerHTML = localStorage.getItem(fname + '_' + "email");
+    cardEmail.innerHTML = `מייל: ${localStorage.getItem(fname + '_' + "email")}`;
 
     const deleteBtn = createDelBtn(fname);
     appendToDoc(cardName, cardJob, cardEmail, deleteBtn, cardDiv);
@@ -133,10 +137,75 @@ function cardContant(fname) {
 
 function readFromLocalStorage() {
     let storedNames = localStorage.getItem("names");
-    storedNames = storedNames.split(',')
-    for (i = 0; i < storedNames.length; i++) {
-        cardContant(storedNames[i])
+    if (storedNames != '') {
+        storedNames = storedNames.split(',')
+        storedNames = arrayRemove(storedNames, '')
+        for (i = 0; i < storedNames.length; i++) {
+            cardContant(storedNames[i])
+        }
     }
 }
 
+function fixCardMargin() {
+
+    let card = document.querySelector('.card');
+    let cardStyle = getComputedStyle(card);
+    let cardWidth = cardStyle.width;
+    cardWidth = cardWidth.replace("px", '');
+    cardWidth = parseInt(cardWidth);
+
+    let container = document.querySelector('#cardContainer');
+    let containerStyle = getComputedStyle(container);
+    let containerWidth = containerStyle.width;
+    containerWidth = containerWidth.replace("px", '');
+    containerWidth = parseInt(containerWidth);
+
+    var rowLength = Math.floor(containerWidth / (cardWidth - 50)); // FIXME: replace 50 in margin-right
+    console.log(rowLength)
+    let nthChild = document.querySelectorAll(`.card:nth-child(${rowLength + 1}`);
+    console.log(nthChild[0].id);
+    document.getElementById(nthChild[0].id).style.marginRight = "0";
+}
+
 readFromLocalStorage();
+fixCardMargin();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,5 @@
+`use strict`
+
 let form = document.getElementById('fib');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
