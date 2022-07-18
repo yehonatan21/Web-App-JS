@@ -10,6 +10,8 @@ const createTriangle = (pos, sidelen) => {
     ctx.lineTo(pos[0] + sidelen / 2, pos[1] - sidelen * Math.sin(Math.PI / 3));
     ctx.lineTo(pos[0] + sidelen, pos[1]);
     ctx.lineTo(...pos);
+    ctx.fillStyle = '#eee';
+
     ctx.closePath();
     ctx.fill();
 };

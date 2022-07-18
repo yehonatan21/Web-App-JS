@@ -1,14 +1,78 @@
-#cardContainer{
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+/* TODO: make it responsive */
+
+* {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #100e17;
+}
+
+#filter-container {
+    width: 100%;
+}
+
+#select-filter {
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#select-filter>input,
+select {
+    border: none;
+    background-color: #292533;
+    color: #eee;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#select-filter>label {
+    border: none;
+    color: #eee;
+}
+
+#select-filter>input:hover,
+select:hover {
+    cursor: pointer;
+}
+
+#cardContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    margin-left: 3%;
+    margin-top: 3%;
 }
 
-#filter{
+#filter {
     display: flex;
 }
 
-.card{
-margin-left: 25px;
+.card {
+    display: flex;
+    flex-direction: column;
+    color: #eee;
+    height: 320px;
+    width: 270px;
+    background-color: #292533;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0px;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+}
+
+.card:hover~.card {
+    position: relative;
+    left: 70px;
+    transition: 0.4s ease-out;
 }

@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: azure;
+    background-color: #100e17;
     margin: 0;
     padding: 0;
 }
@@ -18,7 +18,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(68, 207, 131);
+    background-color: #292533;
 }
 
 #page-nav li a {
@@ -31,14 +31,14 @@ body {
 }
 
 #page-nav li a:hover {
-    background-color: rgb(160, 108, 108);
+    background-color: rgb(68, 207, 131);
 }
 
 #date-and-time {
+    color: #eee;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2.5rem;
-
 }

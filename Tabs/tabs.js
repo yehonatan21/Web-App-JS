@@ -37,6 +37,7 @@ form.addEventListener('submit', function (event) {
 )
 
 function isNameLengthValid(fname) {
+    
     if (fname.length < 2) {
         alert('Your name is less than 2 characters.');
         return false;
@@ -46,6 +47,7 @@ function isNameLengthValid(fname) {
 }
 
 function isJobValid(job) {
+
     if (job.includes("פקיד")) {
         job = job.replace("פקיד", '');
     } else {
@@ -54,6 +56,7 @@ function isJobValid(job) {
 };
 
 function isemailValid(email) {
+
     if (!email.includes("@")) {
         alert('The email is not valid.');
         return false;
@@ -63,24 +66,29 @@ function isemailValid(email) {
 }
 
 function createCard(fname) {
+
     if (localStorage.getItem(fname + '_' + "fullName").length >= 2 && localStorage.getItem(fname + '_' + "email").includes("@")) {
         cardContant(fname);
+        fixCardMargin();
     }
 }
 
 function cleanForm() {
+
     document.getElementById('fullName').value = '';
     document.getElementById('job').value = '';
     document.getElementById('email').value = '';
 }
 
 function arrayRemove(arr, value) {
+
     return arr.filter(function (ele) {
         return ele != value;
     });
 }
 
 function createDelBtn() {
+
     let delButton = document.createElement("button");
     delButton.classList.add('deleteBtn');
     delButton.innerHTML = "מחק כרטיס";
@@ -105,18 +113,16 @@ function createDelBtn() {
 };
 
 function appendToDoc(cardName, cardJob, cardEmail, deleteBtn, cardDiv) {
-    const circleDiv = document.createElement("div");
-    circleDiv.classList.add('circle');
 
     cardDiv.appendChild(cardName);
     cardDiv.appendChild(cardJob);
     cardDiv.appendChild(cardEmail);
     cardDiv.appendChild(deleteBtn);
-    cardDiv.appendChild(circleDiv);
     cardContainer.appendChild(cardDiv);
 }
 
 function cardContant(fname) {
+
     const cardDiv = document.createElement("div");
     cardDiv.classList.add('card');
     cardDiv.setAttribute("id", localStorage.getItem(fname + '_' + "fullName"));
@@ -136,6 +142,7 @@ function cardContant(fname) {
 }
 
 function readFromLocalStorage() {
+
     let storedNames = localStorage.getItem("names");
     if (storedNames != '') {
         storedNames = storedNames.split(',')
@@ -160,52 +167,17 @@ function fixCardMargin() {
     containerWidth = containerWidth.replace("px", '');
     containerWidth = parseInt(containerWidth);
 
-    var rowLength = Math.floor(containerWidth / (cardWidth - 50)); // FIXME: replace 50 in margin-right
-    console.log(rowLength)
-    let nthChild = document.querySelectorAll(`.card:nth-child(${rowLength + 1}`);
-    console.log(nthChild[0].id);
+    let rowLength = Math.floor(containerWidth / (cardWidth - 50)); // FIXME: replace 50 in margin-right
+    console.log(document.querySelectorAll(".card").length); // update after creating cards
+
+    // TODO: 
+    // let cards = document.querySelectorAll(".card").length;
+    // console.log(containerWidth); // update after creating cards
+    // console.log(containerWidth / (document.querySelectorAll(".card").length*200)); // update after creating cards
+
+    let nthChild = document.querySelectorAll(`.card:nth-child(${rowLength}`);
     document.getElementById(nthChild[0].id).style.marginRight = "0";
 }
 
 readFromLocalStorage();
-fixCardMargin();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// fixCardMargin();

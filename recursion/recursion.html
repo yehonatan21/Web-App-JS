@@ -7,27 +7,30 @@
     <title>Recursion</title>
     <script src="recursion.js" defer></script>
     <script src="sierpinski-triangle.js" defer></script>
+    <link rel="stylesheet" href="recursion.css">
 </head>
 
 <body>
-    <div>
+    <div id="fib-container">
         <form id="fib">
-            <label for="number-input">Insert Number:</label>
-            <input type="number" min="0" name="number-input" id="number-input" required>
-            <input type="submit">
+            <label for="number-input">nth of Fibonacci Series:</label>
+            <input id="fib-n" type="number" min="0" name="number-input" id="number-input" required>
+            <input class="submit" type="submit">
         </form>
+        <div id="cardContainer"></div>
     </div>
-    <div id="cardContainer"></div>
-    <form id="sierpinski-triangle">
-        <input type="range" min="100" max="600" value="100" class="slider" id="size"
-            oninput="this.nextElementSibling.value = this.value">
-        <output>100</output>
-        <input type="range" min="0" max="6" value="1" class="slider" id="amount"
-            oninput="this.nextElementSibling.value = this.value">
-        <output>1</output>
-        <input type="submit">
-    </form>
-    <canvas id="canvas"></canvas>
+    <div id="sierpinski-triangle-container">
+        <form id="sierpinski-triangle">
+            <input class="range" type="range" min="100" max="600" value="100" class="slider" id="size"
+                oninput="this.nextElementSibling.value = this.value">
+            <output>100</output>
+            <input class="range" type="range" min="0" max="6" value="0" class="slider" id="amount"
+                oninput="this.nextElementSibling.value = this.value">
+            <output>0</output>
+            <input class="submit" type="submit" value="Create Triangle">
+        </form>
+        <canvas id="canvas"></canvas>
+    </div>
 </body>
 
 </html>

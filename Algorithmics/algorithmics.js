@@ -63,7 +63,7 @@ form.addEventListener('submit', function (event) {
     } else {
         let decryptStr = [];
         for (i = 0; i < lettersInput.length; i++) {
-            console.log(((lettersInput[i].charCodeAt(0)) - numberInput))
+            // console.log(((lettersInput[i].charCodeAt(0)) - numberInput))
             if (((lettersInput[i].charCodeAt(0)) - numberInput) < 97) {
                 decryptStr.push(String.fromCharCode((((lettersInput[i].charCodeAt(0)) - numberInput) + 26)));
             } else {

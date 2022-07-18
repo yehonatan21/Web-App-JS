@@ -3,9 +3,9 @@
 let form = document.getElementById('fib');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    let n = document.getElementById('number-input').value;
-    n = fib(n)
-    addToDoc(n)
+    let input = document.getElementById('number-input').value;
+    n = fib(input)
+    addToDoc(input, n)
 })
 
 
@@ -18,11 +18,11 @@ function fib(n) {
     }
 }
 
-function addToDoc(content) {
+function addToDoc(n, content) {
     const cardDiv = document.createElement("div");
     cardDiv.classList.add('card');
     cardDiv.setAttribute("id", content);
-    cardDiv.innerHTML = content;
+    cardDiv.innerHTML = `fibonacci series ${n}th: <br>${content}`;
     cardContainer.appendChild(cardDiv);
 }
 
