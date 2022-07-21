@@ -7,27 +7,32 @@
     <title>Algorithmics</title>
     <script src="algorithmics.js" defer></script>
     <link rel="stylesheet" href="algorithmics.css">
-
 </head>
 
 <body>
-    <div>
-        <form id="palindrome">
-            <label for="palindrome-input">Your Input:</label>
-            <input type="text" name="action" id="palindrome-input">
-            <input type="submit" id="find">
-        </form>
-    </div>
+    <form id="palindrome">
+        <label for="palindrome-input">Your Input:</label>
+        <div class="input-container">
+            <input id="palindrome-input" type="text" placeholder="">
+            <span class="focus-border"></span>
+        </div>
+        <input class="submit" type="submit" id="find" value="Check">
+    </form>
 
-    <div>
-        <form id="letters">
-            <label for="letters-input">Enter Letters:</label>
+    <form id="letters-form">
+        <div>
+            <label for="letters-input" class="title">Enter Letters:</label>
             <input type="text" name="letters-input" id="letters-input" required>
+        </div>
+        <div>
+            <label for="number-input" class="title">Enter Number:</label>
             <input type="number" min="0" max="25" name="number-input" id="number-input" required>
-            <input type="submit" id="Encrypt" name="Encrypt" value="Encrypt">
-            <input type="submit" id="Decrypt" name="Decrypt" value="Decrypt">
-        </form>
-    </div>
+        </div>
+        <div>
+            <input type="submit" class="submit" id="Encrypt" name="Encrypt" value="Encrypt">
+            <input type="submit" class="submit" id="Decrypt" name="Decrypt" value="Decrypt">
+        </div>
+    </form>
     <div id="cardContainer">
 
     </div>

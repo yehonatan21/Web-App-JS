@@ -1,7 +1,7 @@
 `use strict`
 
-const c = document.getElementById("canvas");
-const ctx = c.getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
 const createTriangle = (pos, sidelen) => {
     ctx.beginPath();
@@ -43,7 +43,6 @@ tr.addEventListener('submit', function (event) {
     canvas.height = size;
     canvas.width = size;
 
-    createSierpinskiTriangle([0, size], size, amonut); // pos(canvas size) - size in the canvas - amonut
-})
-
+    createSierpinskiTriangle([0, size], size, amonut);
+});
 

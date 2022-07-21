@@ -20,7 +20,7 @@ body {
 }
 
 #sierpinski-triangle,
-#fib {
+#fib-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +31,7 @@ body {
     padding: 1% 0;
 }
 
-#fib {
+#fib-form {
     font-size: 1.5rem;
     width: 404px;
     height: 170px;

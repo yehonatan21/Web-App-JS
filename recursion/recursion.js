@@ -1,28 +1,27 @@
 `use strict`
 
-let form = document.getElementById('fib');
-form.addEventListener('submit', function (event) {
+let fibForm = document.getElementById('fib-form');
+fibForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    let input = document.getElementById('number-input').value;
-    n = fib(input)
-    addToDoc(input, n)
+    let nthInput = document.getElementById('fib-n').value;
+    nth = nthFib(nthInput)
+    addToDoc(nthInput, nth)
 })
 
-
-function fib(n) {
+function nthFib(n) {
     if (n == 1 || n == 0) {
         return n;
     }
     else {
-        return fib(n - 1) + fib(n - 2)
+        return nthFib(n - 1) + nthFib(n - 2)
     }
 }
 
-function addToDoc(n, content) {
+function addToDoc(nth, content) {
     const cardDiv = document.createElement("div");
     cardDiv.classList.add('card');
     cardDiv.setAttribute("id", content);
-    cardDiv.innerHTML = `fibonacci series ${n}th: <br>${content}`;
+    cardDiv.innerHTML = `fibonacci series ${nth}th: <br>${content}`;
     cardContainer.appendChild(cardDiv);
 }
 

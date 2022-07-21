@@ -108,19 +108,29 @@ body {
     transform-origin: 0 50%;
     transition: transform 200ms, color 200ms;
     top: 20px;
+    visibility: hidden;
 }
+
+.input:focus::placeholder {
+    color: transparent;
+  }
 
 .input:focus~.placeholder,
 .input:not(:placeholder-shown)~.placeholder {
     transform: translateY(-30px) translateX(10px) scale(.75);
+    visibility: visible;
 }
 
 .input:not(:placeholder-shown)~.placeholder {
     color: #808097;
+    visibility: visible;
+
 }
 
 .input:focus~.placeholder {
     color: #2fdc77;
+    visibility: visible;
+
 }
 
 .submit {
@@ -162,6 +172,8 @@ body {
     display: flex;
     direction: rtl;
     flex-wrap: wrap;
+    margin-right: 50px;
+
 }
 
 .card {
@@ -176,12 +188,11 @@ body {
     transition: 0.4s ease-out;
     position: relative;
     right: 0px;
-}
-
-.card:not(:first-child) {
+    /* background-color:green;
+    border:2px solid yellow; */
     margin-right: -50px;
-}
 
+}
 .card:hover {
     transform: translateY(-20px);
     transition: 0.4s ease-out;
@@ -191,4 +202,4 @@ body {
     position: relative;
     right: 50px;
     transition: 0.4s ease-out;
-}
+} 
