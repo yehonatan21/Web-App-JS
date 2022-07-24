@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 
-/* TODO: make it responsive */
+/* TODO: make nav form responsive */
 
 * {
     font-family: "Poppins", sans-serif;
@@ -18,10 +18,10 @@ body {
 #select-filter {
     margin-left: 3%;
     margin-top: 2%;
+    display: flex;
 }
 
-#select-filter>input,
-select {
+#select-filter * {
     border: none;
     background-color: #292533;
     color: #eee;
@@ -29,9 +29,12 @@ select {
     font-size: 18px;
 }
 
-#select-filter>label {
-    border: none;
-    color: #eee;
+#test {
+    display: inline;
+}
+
+#select-filter>:not(:last-child){
+    margin-right: 3px;
 }
 
 #select-filter>input:hover,
@@ -46,10 +49,6 @@ select:hover {
     align-items: center;
     margin-left: 3%;
     margin-top: 3%;
-}
-
-#filter {
-    display: flex;
 }
 
 .card {
@@ -75,4 +74,29 @@ select:hover {
     position: relative;
     left: 70px;
     transition: 0.4s ease-out;
+}
+
+@media (max-width: 1260px) {
+
+    #select-filter {
+        margin-left: 3%;
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+    }
+
+    #select-filter>* {
+        margin: 8px 0;
+    }
+
+    #filter-value{
+        width: 100%;
+    }
+
+    #test {
+        display: flex;
+        flex-direction: row;
+    }
+
 }

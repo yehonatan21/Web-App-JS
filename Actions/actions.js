@@ -144,7 +144,7 @@ formValue.addEventListener('submit', function (event) {
     event.preventDefault();
     let selector = getSelectorValue();
     let filterValue = getFilterValue();
-    let FilterValueNaN = isFilterValueNaN(filterValue);
+    let FilterValueNaN = isNaN(filterValue);
 
     switch (event.submitter.id) {
         case 'find':
@@ -238,14 +238,6 @@ function getFilterValue() {
     return document.getElementById('filter-value').value;
 }
 
-function isFilterValueNaN(filterValue) {
-    if (isNaN(filterValue)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function getSelectorValue() {
     return document.getElementById('fileds').value;
 }
@@ -321,7 +313,7 @@ function filterByGradesHigherThan(filterValue) {
 
 function filterByAddress(filterValue) {
 
-    var myArray = filterValue.split(".");
+    let myArray = filterValue.split(".");
     myArray[0] = myArray[0].toLowerCase()
     if (myArray[0] == 'city') {
         for (i = 0; i < usersArray.length; i++) {

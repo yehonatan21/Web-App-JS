@@ -1,5 +1,6 @@
 `use strict`
-var datetime = new Date();
+
+let datetime = new Date();
 function startTime() {
     const dateString = new Date().toLocaleString();
     const formattedString = dateString.replace(", ", " - ");

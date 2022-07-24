@@ -34,8 +34,8 @@ let tr = document.getElementById('sierpinski-triangle');
 tr.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    var canvas = document.getElementById("canvas");
-    var context = canvas.getContext('2d');
+    let canvas = document.getElementById("canvas");
+    let context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     let size = document.getElementById('size').value;
