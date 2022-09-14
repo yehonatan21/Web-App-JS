@@ -29,7 +29,7 @@ body {
     font-size: 18px;
 }
 
-#test {
+#gather-label-input {
     display: inline;
 }
 
@@ -94,7 +94,7 @@ select:hover {
         width: 100%;
     }
 
-    #test {
+    #gather-label-input {
         display: flex;
         flex-direction: row;
     }
